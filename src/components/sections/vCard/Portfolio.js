@@ -9,6 +9,7 @@ const WyzerImage = '/projects/wyzer.png';
 const MindmateImage = '/projects/mindmate.png';
 const BlogImage = '/projects/blog.png';
 const TechByteImage = '/projects/techbyte.png';
+const PortfolioImage = '/projects/Portfolio.png';
 
 const Portfolio = () => {
   
@@ -16,6 +17,15 @@ const Portfolio = () => {
   const projects = [
     {
       id: 1,
+      title: 'Portfolio',
+      category: 'Personal Portfolio Website',
+      githubLink: 'https://github.com/PsyCode404/Mohamed-Guenidi-Portfolio',
+      liveDemo: '',
+      technologies: ['React', 'Tailwind CSS', 'Framer Motion' , 'Botpress'],
+      image: PortfolioImage
+    },
+    {
+      id: 2,
       title: 'GexFME',
       category: ' CAD File Management & Analysis Platform',
       githubLink: 'https://github.com/PsyCode404/GexFME',
@@ -24,7 +34,7 @@ const Portfolio = () => {
       image: GexfmeImage
     },
     {
-      id: 2,
+      id: 3,
       title: 'Wyzer',
       category: 'Personal Finance Tracker',
       githubLink: 'https://github.com/PsyCode404/Wyzer',
@@ -33,7 +43,7 @@ const Portfolio = () => {
       image: WyzerImage
     },
     {
-      id: 3,
+      id: 4,
       title: 'MindMate',
       category: 'Mental Wellness Tracker and Support Platform',
       githubLink: 'https://github.com/PsyCode404/MindMate',
@@ -84,7 +94,7 @@ const Portfolio = () => {
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain bg-cardBackground"
                 />
               </div>
               <div className="p-4 flex flex-col flex-grow">
