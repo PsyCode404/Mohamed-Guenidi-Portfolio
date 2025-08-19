@@ -1,0 +1,102 @@
+/* This file uses Tailwind CSS - https://tailwindcss.com */
+/* These directives will be processed by PostCSS and are valid */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #4A90E2;
+  --secondary-color: #357ABD;
+  --background-color: #FDFDFD;
+  --text-color: #333333;
+}
+
+body {
+  @apply bg-background;
+  color: var(--text-color);
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+}
+
+/* Custom styles for vCard layout */
+@media (max-width: 1023px) {
+  .ml-64 {
+    margin-left: 0;
+  }
+  
+  aside {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  
+  main {
+    margin-left: 0;
+  }
+  
+  /* Contact section responsive iframe */
+  iframe {
+    height: 250px;
+  }
+  
+  /* Adjust tab navigation for mobile */
+  .flex-wrap {
+    justify-content: space-between;
+  }
+  
+  .flex-wrap button {
+    flex: 1 1 auto;
+    min-width: 45%;
+    margin-bottom: 8px;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-accent hover:bg-accent/90 text-white font-medium py-2 px-4 rounded-md transition-all duration-300 ease-in-out;
+  }
+  
+  .btn-secondary {
+    @apply bg-accent hover:bg-accent/90 text-white border border-accent font-medium py-2 px-4 rounded-md transition-all duration-300 ease-in-out;
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+  
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300;
+  }
+  
+  .skill-badge {
+    @apply bg-primary/10 text-primary text-xs font-medium px-2.5 py-0.5 rounded-full;
+  }
+}

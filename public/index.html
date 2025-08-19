@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Mohamed Guenidi - Creative Developer Portfolio"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Mohamed Guenidi | Creative Developer</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chat widget styles -->
+    <style>
+      /* Chat widget container */
+      #chat-container {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 350px;
+        height: 500px;
+        z-index: 9998;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        display: none;
+      }
+      
+      /* Chat trigger styles */
+      #chat-trigger {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      /* Chat bubble */
+      .chat-bubble {
+        position: relative;
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 20px;
+        font-weight: 500;
+        font-size: 16px;
+        box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transform-origin: bottom right;
+        animation: bounce 1s ease infinite alternate;
+      }
+      
+      .chat-bubble::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        right: 12px;
+        width: 16px;
+        height: 16px;
+        background: #4f46e5;
+        transform: rotate(45deg);
+        z-index: -1;
+      }
+      
+      .chat-bubble svg {
+        animation: wave 1.5s ease infinite;
+      }
+      
+      /* Close button */
+      #chat-close {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 9999;
+        display: none;
+        transform: scale(0);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      
+      #chat-close svg {
+        color: #4f46e5;
+        width: 24px;
+        height: 24px;
+      }
+      
+      #chat-close.visible {
+        display: flex;
+        transform: scale(1);
+      }
+      
+      /* Animations */
+      @keyframes bounce {
+        0% { transform: scale(1) translateY(0); }
+        100% { transform: scale(1.05) translateY(-5px); }
+      }
+      
+      @keyframes wave {
+        0% { transform: rotate(0deg); }
+        25% { transform: rotate(-10deg); }
+        75% { transform: rotate(10deg); }
+        100% { transform: rotate(0deg); }
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      #chat-container.visible {
+        display: block;
+        animation: fadeIn 0.3s forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    
+    <!-- Chat button and container (will be created by JavaScript) -->
+    
+    <!-- Botpress Integration Script -->
+    <script>
+      // Wait for DOM to be fully loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('Setting up chat widget...');
+        
+        // Create chat trigger (animated bubble)
+        const chatTrigger = document.createElement('div');
+        chatTrigger.id = 'chat-trigger';
+        chatTrigger.innerHTML = `
+          <div class="chat-bubble">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Ask me anything!</span>
+          </div>
+        `;
+        document.body.appendChild(chatTrigger);
+        console.log('Chat trigger created');
+        
+        // Create close button (initially hidden)
+        const closeButton = document.createElement('div');
+        closeButton.id = 'chat-close';
+        closeButton.innerHTML = `
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        `;
+        document.body.appendChild(closeButton);
+        console.log('Close button created');
+        
+        // Create chat container
+        const chatContainer = document.createElement('div');
+        chatContainer.id = 'chat-container';
+        document.body.appendChild(chatContainer);
+        console.log('Chat container created');
+        
+        // Create iframe inside container
+        const iframe = document.createElement('iframe');
+        iframe.id = 'botpress-iframe';
+        iframe.src = 'https://cdn.botpress.cloud/webchat/v3.0/shareable.html?configUrl=https://files.bpcontent.cloud/2025/06/17/13/20250617131311-DFKKYWJV.json';
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+        chatContainer.appendChild(iframe);
+        console.log('Botpress iframe created');
+        
+        // Track chat state
+        let isChatOpen = false;
+        
+        // Function to open chat
+        function openChat() {
+          if (isChatOpen) return;
+          
+          console.log('Opening chat');
+          // Make sure the container is displayed before adding the visible class
+          chatContainer.style.display = 'block';
+          
+          // Trigger reflow to ensure the display change takes effect
+          void chatContainer.offsetWidth;
+          
+          // Now add the visible class for animation
+          chatContainer.classList.add('visible');
+          chatTrigger.style.display = 'none';
+          
+          // Show close button with animation
+          setTimeout(() => {
+            closeButton.classList.add('visible');
+          }, 300);
+          
+          isChatOpen = true;
+          console.log('Chat is now open, isChatOpen =', isChatOpen);
+        }
+        
+        // Function to close chat
+        function closeChat() {
+          if (!isChatOpen) return;
+          
+          console.log('Closing chat');
+          chatContainer.classList.remove('visible');
+          closeButton.classList.remove('visible');
+          
+          // Show trigger after animation completes
+          setTimeout(() => {
+            chatContainer.style.display = 'none';
+            chatTrigger.style.display = 'block';
+          }, 300);
+          
+          isChatOpen = false;
+          console.log('Chat is now closed, isChatOpen =', isChatOpen);
+        }
+        
+        // Add click events
+        chatTrigger.addEventListener('click', openChat);
+        closeButton.addEventListener('click', closeChat);
+        
+        // Make function available for Hero section button
+        window.botpressWebChat = {
+          sendEvent: function(event) {
+            console.log('Botpress event received:', event);
+            if (event.type === 'show' && !isChatOpen) {
+              openChat();
+            } else if (event.type === 'hide' && isChatOpen) {
+              closeChat();
+            }
+          }
+        };
+        
+        // Log when iframe is loaded
+        iframe.addEventListener('load', function() {
+          console.log('Botpress iframe loaded successfully');
+        });
+        
+        console.log('Chat widget setup complete');
+      });
+    </script>
+  </body>
+</html>
