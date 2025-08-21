@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaBars, FaTimes, FaHome, FaUser, FaBriefcase, FaEnvelope } from 'react-icons/fa';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaHome, FaUser, FaBriefcase, FaEnvelope, FaComments } from 'react-icons/fa';
 
 const MobileMenu = ({ activeTab, setActiveTab }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const tabs = [
     { id: 'about', label: 'About', icon: FaUser },
     { id: 'resume', label: 'Resume', icon: FaHome },
@@ -12,70 +10,29 @@ const MobileMenu = ({ activeTab, setActiveTab }) => {
     { id: 'contact', label: 'Contact', icon: FaEnvelope }
   ];
 
-  const handleTabClick = (tabId) => {
-    setActiveTab(tabId);
-    setIsMenuOpen(false);
+  const handleChatClick = () => {
+    // Prefer the global API exposed in public/index.html
+    if (window.botpressWebChat && typeof window.botpressWebChat.sendEvent === 'function') {
+      window.botpressWebChat.sendEvent({ type: 'show' });
+      return;
+    }
+    // Last resort: click our injected trigger if present
+    const trigger = document.getElementById('chat-trigger');
+    if (trigger) trigger.click();
   };
 
   return (
     <>
-      {/* Mobile Menu Button */}
+      {/* Mobile Chatbot Button */}
       <div className="lg:hidden">
         <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="fixed top-4 right-4 z-50 w-12 h-12 rounded-full bg-gradient-to-br from-accent to-accentSecondary text-white flex items-center justify-center shadow-lg"
-          aria-label="Toggle navigation menu"
+          onClick={handleChatClick}
+          className="fixed top-4 right-4 z-50 w-10 h-10 rounded-full bg-gradient-to-br from-accent to-accentSecondary text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-200"
+          aria-label="Open chat"
         >
-          {isMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+          <FaComments size={16} />
         </button>
       </div>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            {/* Mobile Menu Panel */}
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="absolute right-0 top-0 h-full w-80 max-w-[80vw] bg-backgroundSecondary border-l border-cardBorder"
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="p-6 pt-20">
-                {/* Navigation Links */}
-                <nav className="space-y-4">
-                  {tabs.map((tab) => {
-                    const Icon = tab.icon;
-                    return (
-                      <button
-                        key={tab.id}
-                        onClick={() => handleTabClick(tab.id)}
-                        className={`w-full flex items-center gap-4 p-4 rounded-lg transition-all duration-300 ${
-                          activeTab === tab.id
-                            ? 'bg-gradient-to-br from-accent to-accentSecondary text-white shadow-lg'
-                            : 'bg-cardBackground text-textSecondary hover:text-accent hover:bg-cardBorder'
-                        }`}
-                      >
-                        <Icon size={20} />
-                        <span className="font-medium">{tab.label}</span>
-                      </button>
-                    );
-                  })}
-                </nav>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Bottom Navigation Bar (Alternative mobile navigation) */}
       <div className="fixed bottom-0 left-0 right-0 lg:hidden bg-backgroundSecondary border-t border-cardBorder z-30">

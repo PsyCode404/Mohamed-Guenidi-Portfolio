@@ -18,15 +18,32 @@
     <style>
       /* Custom styles for Botpress chatbot on mobile */
       @media (max-width: 768px) {
-        /* Reposition the 'Ask me anything' button */
-        div.bp-widget-open-button {
-          bottom: 80px !important; /* Move it above the mobile nav */
-          right: 15px !important;
+        /* Hide the default Botpress floating button (cover multiple versions) */
+        .bpw-floating-button,
+        .bpw-floating-button-container,
+        .bpw-launcher,
+        .bpw-bubble,
+        .bpw-widget-container,
+        div.bp-widget-open-button,
+        #bp-web-widget,
+        [class*="bp-widget"],
+        [id*="bp-web-widget"] {
+          display: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
+          pointer-events: none !important;
         }
 
-        /* Adjust the chatbot window position */
-        div.bp-widget-web-container {
-          bottom: 80px !important; /* Ensure it doesn't overlap the nav */
+        /* We control opening via our top-right button on mobile */
+        #chat-trigger {
+          display: none !important;
+        }
+
+        /* Ensure chat window doesn't overlap the bottom nav */
+        .bpw-chat-container,
+        div.bp-widget-web-container,
+        #chat-container {
+          bottom: 80px !important; /* Keep above mobile nav */
         }
       }
       /* Chat widget container */
@@ -152,7 +169,33 @@
       // Wait for DOM to be fully loaded
       document.addEventListener('DOMContentLoaded', function() {
         console.log('Setting up chat widget...');
-        
+
+        // On mobile, aggressively hide any default Botpress floating button injected by scripts
+        if (window.matchMedia && window.matchMedia('(max-width: 768px)').matches) {
+          const hideDefaultBotpress = () => {
+            const selectors = [
+              '.bpw-floating-button',
+              '.bpw-floating-button-container',
+              '.bpw-launcher',
+              '.bpw-bubble',
+              '.bpw-widget-container',
+              'div.bp-widget-open-button',
+              '#bp-web-widget',
+              '[class*="bp-widget"]',
+              '[id*="bp-web-widget"]'
+            ];
+            document.querySelectorAll(selectors.join(',')).forEach(el => {
+              el.style.display = 'none';
+              el.style.visibility = 'hidden';
+              el.style.opacity = '0';
+              el.style.pointerEvents = 'none';
+            });
+          };
+          hideDefaultBotpress();
+          const observer = new MutationObserver(hideDefaultBotpress);
+          observer.observe(document.body, { childList: true, subtree: true });
+        }
+
         // Create chat trigger (animated bubble)
         const chatTrigger = document.createElement('div');
         chatTrigger.id = 'chat-trigger';
