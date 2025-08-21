@@ -16,6 +16,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Chat widget styles -->
     <style>
+      /* Custom styles for Botpress chatbot on mobile */
+      @media (max-width: 768px) {
+        /* Reposition the 'Ask me anything' button */
+        div.bp-widget-open-button {
+          bottom: 80px !important; /* Move it above the mobile nav */
+          right: 15px !important;
+        }
+
+        /* Adjust the chatbot window position */
+        div.bp-widget-web-container {
+          bottom: 80px !important; /* Ensure it doesn't overlap the nav */
+        }
+      }
       /* Chat widget container */
       #chat-container {
         position: fixed;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from './components/layout/Sidebar';
+import MobileMenu from './components/layout/MobileMenu';
 import TabNavigation from './components/layout/TabNavigation';
 import About from './components/sections/vCard/About';
 import Resume from './components/sections/vCard/Resume';
@@ -28,13 +29,20 @@ function App() {
 
   return (
     <div className="flex min-h-screen bg-background">
-      {/* Sidebar */}
-      <Sidebar />
+      {/* Desktop Sidebar - Hidden on mobile */}
+      <div className="hidden lg:block">
+        <Sidebar />
+      </div>
+      
+      {/* Mobile Navigation */}
+      <MobileMenu activeTab={activeTab} setActiveTab={setActiveTab} />
       
       {/* Main Content */}
-      <main className="flex-1 ml-64 p-8">
-        {/* Tab Navigation */}
-        <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
+      <main className="flex-1 lg:ml-64 p-4 lg:p-8 pb-20 lg:pb-8">
+        {/* Tab Navigation - Hidden on mobile */}
+        <div className="hidden lg:block">
+          <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
+        </div>
         
         {/* Tab Content */}
         <AnimatePresence mode="wait">

@@ -25,34 +25,16 @@ body {
 
 /* Custom styles for vCard layout */
 @media (max-width: 1023px) {
-  .ml-64 {
-    margin-left: 0;
-  }
-  
-  aside {
-    position: relative;
-    width: 100%;
-    height: auto;
-  }
-  
-  main {
-    margin-left: 0;
-  }
-  
   /* Contact section responsive iframe */
   iframe {
     height: 250px;
   }
-  
-  /* Adjust tab navigation for mobile */
-  .flex-wrap {
-    justify-content: space-between;
-  }
-  
-  .flex-wrap button {
-    flex: 1 1 auto;
-    min-width: 45%;
-    margin-bottom: 8px;
+}
+
+/* Add padding to the bottom of the body to prevent content from being hidden by the mobile nav */
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: 80px; /* Adjust this value based on the height of your bottom nav */
   }
 }
 

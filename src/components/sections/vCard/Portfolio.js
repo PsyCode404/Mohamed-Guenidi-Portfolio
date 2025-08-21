@@ -52,7 +52,7 @@ const Portfolio = () => {
       image: MindmateImage
     },
     {
-      id: 4,
+      id: 6,
       title: 'Blog Web App',
       category: 'A clean space to write and publish.',
       githubLink: 'https://github.com/PsyCode404/Blog-Web-App',

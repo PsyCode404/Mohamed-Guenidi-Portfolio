@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import Card from '../../ui/Card';
 import Button from '../../ui/Button';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+// Profile picture from public directory
+const ProfilePic = '/PortfolioPic.png';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -67,6 +70,81 @@ const Contact = () => {
       transition={{ duration: 0.5 }}
       className="space-y-8"
     >
+      {/* Mobile Profile Section - Only visible on mobile */}
+      <div className="lg:hidden">
+        <Card>
+          <div className="text-center mb-6">
+            {/* Profile Picture */}
+            <div className="flex justify-center mb-4">
+              <div className="relative w-20 h-20">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent to-accentSecondary rounded-full blur-md opacity-30"></div>
+                <img 
+                  src={ProfilePic} 
+                  alt="Profile" 
+                  className="relative rounded-full w-full h-full object-cover border-4 border-white/20"
+                />
+              </div>
+            </div>
+            
+            {/* Name and Title */}
+            <h1 className="text-xl font-bold text-textPrimary mb-2">Mohamed Guenidi</h1>
+            <p className="text-textSecondary text-sm bg-onyx px-3 py-1 rounded-lg inline-block mb-4">
+              Computer Science Student | Full stack developer
+            </p>
+            
+            {/* Contact Information */}
+            <div className="space-y-3 mb-6">
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-accent text-sm">📧</span>
+                <a 
+                  href="mailto:mohamedguenidi7@gmail.com" 
+                  className="text-textPrimary hover:text-accent transition-colors duration-300 text-sm"
+                >
+                  mohamedguenidi7@gmail.com
+                </a>
+              </div>
+
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-accent text-sm">📞</span>
+                <a 
+                  href="tel:+21695171170" 
+                  className="text-textPrimary hover:text-accent transition-colors duration-300 text-sm"
+                >
+                  +216 95 171 170
+                </a>
+              </div>
+
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-accent text-sm">📍</span>
+                <span className="text-textPrimary text-sm">Jemmel, Tunisia</span>
+              </div>
+            </div>
+            
+            {/* Social Media Icons */}
+            <div className="flex justify-center gap-4">
+              <a 
+                href="https://github.com/PsyCode404" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-gradient-to-br from-cardBorder to-cardBackground flex items-center justify-center text-accent hover:from-accent hover:to-accentSecondary hover:text-white transition-all duration-300 border border-cardBorder"
+                aria-label="GitHub"
+              >
+                <FaGithub size={20} />
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/mohamed-guenidi-53a2a4340/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-gradient-to-br from-cardBorder to-cardBackground flex items-center justify-center text-accent hover:from-accent hover:to-accentSecondary hover:text-white transition-all duration-300 border border-cardBorder"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin size={20} />
+              </a>
+            </div>
+          </div>
+        </Card>
+      </div>
+
       {/* Location Map */}
       <div>
         <h2 className="text-2xl font-bold text-white mb-6">Location</h2>
