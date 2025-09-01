@@ -47,7 +47,7 @@ const Portfolio = () => {
       title: 'MindMate',
       category: 'Mental Wellness Tracker and Support Platform',
       githubLink: 'https://github.com/PsyCode404/MindMate',
-      liveDemo: 'https://mindmate-production-2d9e.up.railway.app/',
+      liveDemo: 'https://mindmate-uyla.onrender.com',
       technologies: ['PHP', 'MySQL', 'JavaScript', 'HTML5', 'CSS3', 'Chart.js'],
       image: MindmateImage
     },
