@@ -12,7 +12,6 @@ const TechByteImage = '/projects/techbyte.png';
 const PortfolioImage = '/projects/Portfolio.png';
 const N8nImage = '/projects/n8n.png';
 const StudyMateImage = '/projects/StudyMate.png';
-const PlaceholderImage = '/projects/placeholder.png';
 
 const Portfolio = () => {
   
