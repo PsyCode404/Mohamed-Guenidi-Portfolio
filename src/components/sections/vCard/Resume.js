@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Card from '../../ui/Card';
-import { SiHtml5, SiCss3, SiJavascript, SiBootstrap, SiReact, SiNextdotjs, SiEjs, SiTailwindcss, SiNodedotjs, SiPhp, SiFlask, SiMysql, SiPostgresql, SiSqlite, SiMongodb, SiGit, SiGithub, SiDocker, SiPostman, SiAmazons3 } from 'react-icons/si';
+import { SiHtml5, SiCss3, SiJavascript, SiBootstrap, SiReact, SiNextdotjs, SiEjs, SiTailwindcss, SiAngular, SiNodedotjs, SiPhp, SiFlask, SiSpringboot, SiMysql, SiPostgresql, SiSqlite, SiMongodb, SiGit, SiGithub, SiDocker, SiPostman, SiAmazons3 } from 'react-icons/si';
+import { FaCloud } from 'react-icons/fa';
 
 const Resume = () => {
   // Experience data
@@ -52,6 +53,7 @@ const Resume = () => {
       { name: 'JavaScript', icon: <SiJavascript className="text-yellow-500" /> },
       { name: 'Bootstrap', icon: <SiBootstrap className="text-purple-600" /> },
       { name: 'React', icon: <SiReact className="text-blue-500" /> },
+      { name: 'Angular', icon: <SiAngular className="text-red-600" /> },
       { name: 'Next.js', icon: <SiNextdotjs className="text-black" /> },
       { name: 'EJS', icon: <SiEjs className="text-red-500" /> },
       { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-cyan-500" /> }
@@ -60,6 +62,7 @@ const Resume = () => {
       { name: 'Node.js', icon: <SiNodedotjs className="text-green-600" /> },
       { name: 'PHP', icon: <SiPhp className="text-indigo-600" /> },
       { name: 'Flask', icon: <SiFlask className="text-black" /> },
+      { name: 'Spring Boot', icon: <SiSpringboot className="text-green-600" /> },
       { name: 'MySQL', icon: <SiMysql className="text-blue-700" /> },
       { name: 'PostgreSQL', icon: <SiPostgresql className="text-blue-500" /> },
       { name: 'SQLite', icon: <SiSqlite className="text-blue-700" /> },
@@ -70,7 +73,8 @@ const Resume = () => {
       { name: 'GitHub', icon: <SiGithub className="text-black" /> },
       { name: 'Docker', icon: <SiDocker className="text-blue-600" /> },
       { name: 'Postman', icon: <SiPostman className="text-orange-500" /> },
-      { name: 'S3 Storage', icon: <SiAmazons3 className="text-orange-400" /> }
+      { name: 'S3 Storage', icon: <SiAmazons3 className="text-orange-400" /> },
+      { name: 'Azure', icon: <FaCloud className="text-blue-500" /> }
     ]}
   ];
 
@@ -213,6 +217,31 @@ const Resume = () => {
             <div className="flex flex-col md:flex-row md:items-start gap-3">
               <div className="md:w-1/4">
                 <span className="inline-block px-2 py-1 bg-accent text-white rounded-full text-xs font-medium">
+                  October 2025
+                </span>
+              </div>
+              <div className="md:w-3/4">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <div>
+                    <h3 className="text-lg font-semibold text-textPrimary">The Complete Full-Stack Web Development Bootcamp</h3>
+                    <p className="font-medium text-accent mt-1">Udemy</p>
+                  </div>
+                  <a
+                    href="https://www.udemy.com/certificate/UC-d1b4e736-5ac2-469d-b7b3-d51d050a2fd0/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-3 py-1.5 bg-accent hover:bg-accentHover text-white text-sm font-medium rounded-md transition-colors duration-200"
+                  >
+                    View Certificate
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-cardBackground border border-cardBorder rounded-lg p-4">
+            <div className="flex flex-col md:flex-row md:items-start gap-3">
+              <div className="md:w-1/4">
+                <span className="inline-block px-2 py-1 bg-accent text-white rounded-full text-xs font-medium">
                   December 4th 2024.
                 </span>
               </div>
@@ -248,7 +277,7 @@ const Resume = () => {
                     <p className="font-medium text-accent mt-1">AIESEC</p>
                   </div>
                   <a
-                    href="https://gis-production-eu.s3.eu-west-1.amazonaws.com/j7aymkfvml6q7x0sq3fje1ks3qdm?response-content-disposition=inline%3B%20filename%3D%22application_6670951.pdf%22%3B%20filename%2A%3DUTF-8%27%27application_6670951.pdf&response-content-type=application%2Fpdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4WY26CMR3JRJCAGE%2F20250816%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250816T121813Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=585790edab1c5ca777e952fabd10e023e302aa2a92970b6ef31bc3d33e0c7079"
+                    href="/projects/aisec.png"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-3 py-1.5 bg-accent hover:bg-accentHover text-white text-sm font-medium rounded-md transition-colors duration-200"

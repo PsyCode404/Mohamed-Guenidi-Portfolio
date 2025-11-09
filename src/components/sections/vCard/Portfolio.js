@@ -10,6 +10,9 @@ const MindmateImage = '/projects/mindmate.png';
 const BlogImage = '/projects/blog.png';
 const TechByteImage = '/projects/techbyte.png';
 const PortfolioImage = '/projects/Portfolio.png';
+const N8nImage = '/projects/n8n.png';
+const StudyMateImage = '/projects/StudyMate.png';
+const PlaceholderImage = '/projects/placeholder.png';
 
 const Portfolio = () => {
   
@@ -17,6 +20,26 @@ const Portfolio = () => {
   const projects = [
     {
       id: 1,
+      title: 'AI News Agent with n8n',
+      category: 'Automated News Aggregation System',
+      description: 'AI automation #n8n #GoogleGemini #WorkflowAutomation',
+      githubLink: '',
+      liveDemo: '',
+      moreDetails: 'https://www.linkedin.com/feed/update/urn:li:activity:7381764383384977408/',
+      technologies: ['n8n', 'AI', 'Automation', 'API Integration'],
+      image: N8nImage
+    },
+    {
+      id: 2,
+      title: 'StudyMate',
+      category: 'Full-Stack Study Tracker with AI-Powered Recommendations',
+      githubLink: 'https://github.com/PsyCode404/StudyMate',
+      liveDemo: 'https://studymatefrontend.z1.web.core.windows.net/',
+      technologies: ['Angular 19', 'TypeScript', 'Spring Boot', 'Spring Security', 'JWT', 'MongoDB Atlas', 'Google Gemini API', 'Azure'],
+      image: StudyMateImage
+    },
+    {
+      id: 3,
       title: 'Portfolio',
       category: 'Personal Portfolio Website',
       githubLink: 'https://github.com/PsyCode404/Mohamed-Guenidi-Portfolio',
@@ -25,7 +48,7 @@ const Portfolio = () => {
       image: PortfolioImage
     },
     {
-      id: 2,
+      id: 4,
       title: 'GexFME',
       category: ' CAD File Management & Analysis Platform',
       githubLink: 'https://github.com/PsyCode404/GexFME',
@@ -34,7 +57,7 @@ const Portfolio = () => {
       image: GexfmeImage
     },
     {
-      id: 3,
+      id: 5,
       title: 'Wyzer',
       category: 'Personal Finance Tracker',
       githubLink: 'https://github.com/PsyCode404/Wyzer',
@@ -43,7 +66,7 @@ const Portfolio = () => {
       image: WyzerImage
     },
     {
-      id: 4,
+      id: 6,
       title: 'MindMate',
       category: 'Mental Wellness Tracker and Support Platform',
       githubLink: 'https://github.com/PsyCode404/MindMate',
@@ -52,7 +75,7 @@ const Portfolio = () => {
       image: MindmateImage
     },
     {
-      id: 6,
+      id: 7,
       title: 'Blog Web App',
       category: 'A clean space to write and publish.',
       githubLink: 'https://github.com/PsyCode404/Blog-Web-App',
@@ -61,7 +84,7 @@ const Portfolio = () => {
       image: BlogImage
     },
     {
-      id: 5,
+      id: 8,
       title: 'TechByte',
       category: 'Shop your favorites in one place.',
       githubLink: 'https://github.com/raptor-xii/TechByte',
@@ -94,7 +117,7 @@ const Portfolio = () => {
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-full object-contain bg-cardBackground"
+                  className="w-full h-full object-cover bg-cardBackground"
                 />
               </div>
               <div className="p-4 flex flex-col flex-grow">
@@ -109,14 +132,16 @@ const Portfolio = () => {
                 </div>
                 <div className="flex gap-3 mt-auto">
                   <div className="flex gap-3">
-                  <a 
-                    href={project.githubLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 px-3 py-1.5 bg-accent hover:bg-accent/90 text-white text-sm font-medium rounded-full border border-accent transition-all duration-300"
-                  >
-                    <span className="text-sm">GitHub</span>
-                  </a>
+                  {project.githubLink && (
+                    <a 
+                      href={project.githubLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 px-3 py-1.5 bg-accent hover:bg-accent/90 text-white text-sm font-medium rounded-full border border-accent transition-all duration-300"
+                    >
+                      <span className="text-sm">GitHub</span>
+                    </a>
+                  )}
                   {project.liveDemo && (
                     <a 
                       href={project.liveDemo} 
@@ -125,6 +150,16 @@ const Portfolio = () => {
                       className="flex items-center gap-1 px-3 py-1.5 bg-cardBackground hover:bg-card-hover text-textPrimary text-sm font-medium rounded-full border border-cardBorder transition-all duration-300"
                     >
                       <span className="text-sm">Live Demo</span>
+                    </a>
+                  )}
+                  {project.moreDetails && (
+                    <a 
+                      href={project.moreDetails} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 px-3 py-1.5 bg-accent hover:bg-accent/90 text-white text-sm font-medium rounded-full border border-accent transition-all duration-300"
+                    >
+                      <span className="text-sm">More Details</span>
                     </a>
                   )}
                 </div>

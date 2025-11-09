@@ -96,7 +96,7 @@ const Sidebar = () => {
           <FaGithub size={20} />
         </a>
         <a 
-          href="https://www.linkedin.com/in/mohamed-guenidi-53a2a4340/" 
+          href="https://www.linkedin.com/in/mohamedguenidi/" 
           target="_blank" 
           rel="noopener noreferrer"
           className="w-10 h-10 rounded-full bg-gradient-to-br from-cardBorder to-cardBackground flex items-center justify-center text-accent hover:from-accent hover:to-accentSecondary hover:text-white transition-all duration-300 border border-cardBorder"
