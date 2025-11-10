@@ -69,7 +69,7 @@ const About = () => {
         <Card className="py-4 px-4">
           <p className="text-textPrimary mb-3">If you'd like to know more about my background and experience, you can view my CV here.</p>
           <a 
-            href="/Moahmed Guenidi CV.pdf" 
+            href={`/Mohamed_Guenidi_Cv.pdf?v=${Date.now()}`}
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-block px-4 py-2 bg-accent hover:bg-accent/90 text-white text-sm font-medium rounded-md transition-all duration-300"
